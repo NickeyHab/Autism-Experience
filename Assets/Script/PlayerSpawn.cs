@@ -7,24 +7,26 @@ public class PlayerSpawn : MonoBehaviour
     public static PlayerSpawn Instance;
     public Transform[] Spawnpoints;
     private int m_playerCount = 0;
-    private bool p2Spawned = false;
+    // private bool p2Spawned = false;
     private void Start()
     {
         PlayerInput p1 = PlayerInput.Instantiate(playerPrefabs[0], playerIndex: 0);
     }
-    private void Update()
-    {
-        // Spawn Player 2 when IJKL input is detected
-        if (!p2Spawned && (
-            Keyboard.current.iKey.wasPressedThisFrame ||
-            Keyboard.current.jKey.wasPressedThisFrame ||
-            Keyboard.current.kKey.wasPressedThisFrame ||
-            Keyboard.current.lKey.wasPressedThisFrame))
-        {
-            PlayerInput p2 = PlayerInput.Instantiate(playerPrefabs[1], playerIndex: 1);
-            p2Spawned = true;
-        }
-    }
+
+    // commented out to disable 2nd player
+    // private void Update()
+    // {
+    //     // Spawn Player 2 when IJKL input is detected
+    //     if (!p2Spawned && (
+    //         Keyboard.current.iKey.wasPressedThisFrame ||
+    //         Keyboard.current.jKey.wasPressedThisFrame ||
+    //         Keyboard.current.kKey.wasPressedThisFrame ||
+    //         Keyboard.current.lKey.wasPressedThisFrame))
+    //     {
+    //         PlayerInput p2 = PlayerInput.Instantiate(playerPrefabs[1], playerIndex: 1);
+    //         p2Spawned = true;
+    //     }
+    // }
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         if (playerInput != null && m_playerCount < Spawnpoints.Length)
