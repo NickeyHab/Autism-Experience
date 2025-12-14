@@ -8,6 +8,16 @@ public class PlayerSpawn : MonoBehaviour
     public Transform[] Spawnpoints;
     private int m_playerCount = 0;
     // private bool p2Spawned = false;
+    private void Awake()
+{
+    if (Instance != null && Instance != this)
+    {
+        Destroy(gameObject);
+        return;
+    }
+
+    Instance = this;
+}
     private void Start()
     {
         PlayerInput p1 = PlayerInput.Instantiate(playerPrefabs[0], playerIndex: 0);
